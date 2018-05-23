@@ -19,7 +19,10 @@ declare class BaseRepository<T extends mongoose.Document> implements IRead<T>, I
     findOneAndUpdate(query: any, data: any): Promise<T | undefined>;
     updateDataByFields(_id: string, data: any, parentField?: string): Promise<void>;
     delete(_id: string, isRealDelete?: boolean): Promise<boolean>;
-    private toObjectId(_id);
-    private paging(page?, limit?);
+    toObjectId(_id: string): mongoose.Types.ObjectId;
+    paging(page?: number, limit?: number): {
+        limit: number;
+        skip: number;
+    };
 }
 export default BaseRepository;

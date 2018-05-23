@@ -132,11 +132,11 @@ class BaseRepository<T extends mongoose.Document> implements IRead<T>, IWrite<T>
         return true;
     }
 
-    private toObjectId(_id: string): mongoose.Types.ObjectId {
+    toObjectId(_id: string): mongoose.Types.ObjectId {
         return mongoose.Types.ObjectId.createFromHexString(_id && _id.toString());
     }
 
-    private paging(page?: number, limit?: number) {
+    paging(page?: number, limit?: number) {
         if (!page || isNaN(page))
             page = 1;
         if (!limit || isNaN(limit))

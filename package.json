@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "description": "Multi-layer pattern with typescript, nodejs",
     "scripts": {
-        "eslint": "./node_modules/.bin/eslint --ext .ts ./**/*.ts",
-        "build": "./node_modules/.bin/tsc"
+        "eslint": "./node_modules/.bin/eslint --ext .ts **/*.ts",
+        "build": "npm run eslint && ./node_modules/.bin/tsc"
     },
     "dependencies": {
         "express": "^4.16.3",
