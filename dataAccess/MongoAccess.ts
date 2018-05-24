@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-class MongoDB {
+class MongoAccess {
     static get connection(): mongoose.Connection {
         return mongoose.connection;
     }
@@ -48,5 +48,5 @@ class MongoDB {
     }
 }
 
-Object.seal(MongoDB);
-export default MongoDB;
+Object.seal(MongoAccess);
+export default MongoAccess;

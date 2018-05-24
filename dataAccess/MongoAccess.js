@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
-class MongoDB {
+class MongoAccess {
     static get connection() {
         return mongoose.connection;
     }
@@ -40,6 +40,6 @@ class MongoDB {
         return schema;
     }
 }
-Object.seal(MongoDB);
-exports.default = MongoDB;
-//# sourceMappingURL=MongoDB.js.map
+Object.seal(MongoAccess);
+exports.default = MongoAccess;
+//# sourceMappingURL=MongoAccess.js.map
