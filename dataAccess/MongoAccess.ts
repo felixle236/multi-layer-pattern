@@ -5,11 +5,11 @@ class MongoAccess {
         return mongoose.connection;
     }
 
-    static async connect(host: string, port: number, dbName: string, username?: string, password?: string): Promise<mongoose.Connection> {
+    static connect(host: string, port: number, dbName: string, username?: string, password?: string): Promise<mongoose.Connection | undefined> {
         (<any>mongoose).Promise = Promise;
         let uri = `mongodb://${host}:${port}/${dbName}`;
 
-        let options = <any>{
+        let options = <mongoose.ConnectionOptions>{
             poolSize: 10, // default is 5
             reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
             reconnectInterval: 500 // Reconnect every 500ms
@@ -20,8 +20,10 @@ class MongoAccess {
             options.pass = password;
         }
 
-        await mongoose.connect(uri, options);
-        return mongoose.connection;
+        return mongoose.connect(uri, options).then(mongo => mongo.connection).catch(error => {
+            console.log('Connect mongodb', error.message);
+            return undefined;
+        });
     }
 
     static initSchema(schemaDefinition: mongoose.SchemaDefinition): mongoose.Schema {
